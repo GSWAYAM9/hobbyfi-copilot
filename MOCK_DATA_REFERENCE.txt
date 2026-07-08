@@ -1,0 +1,351 @@
+═══════════════════════════════════════════════════════════════════════════════
+                   HOBBYFI COPILOT - MOCK DATA REFERENCE
+═══════════════════════════════════════════════════════════════════════════════
+
+🌐 VIEW ON WEBSITE
+───────────────────────────────────────────────────────────────────────────────
+Demo Page:        http://localhost:3000/demo → Click "View Mock Data"
+Direct Page:      http://localhost:3000/mock-data
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                              VENDORS (3 Total)
+═══════════════════════════════════════════════════════════════════════════════
+
+VENDOR 1: Smash Arena
+├─ ID:              vendor_1
+├─ Sport:           Badminton
+├─ Email:           contact@smasharena.com
+├─ Location:        Bangalore, India
+├─ City:            Bangalore
+├─ Members:         245
+├─ Monthly Revenue: ₹125,000
+└─ Trial Users:     32
+
+VENDOR 2: Cricket Connect
+├─ ID:              vendor_2
+├─ Sport:           Cricket
+├─ Email:           info@cricketconnect.com
+├─ Location:        Mumbai, India
+├─ City:            Mumbai
+├─ Members:         180
+├─ Monthly Revenue: ₹98,000
+└─ Trial Users:     28
+
+VENDOR 3: Tennis Pro
+├─ ID:              vendor_3
+├─ Sport:           Tennis
+├─ Email:           hello@tennispro.com
+├─ Location:        New Delhi, India
+├─ City:            New Delhi
+├─ Members:         156
+├─ Monthly Revenue: ₹87,500
+└─ Trial Users:     22
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                    USERS (5 Members in vendor_1)
+═══════════════════════════════════════════════════════════════════════════════
+
+USER 1: Arjun Mehta
+├─ ID:                 user_1
+├─ Email:              arjun.mehta@email.com
+├─ Sport:              Badminton
+├─ Status:             ACTIVE ✅
+├─ Membership Expiry:  +30 days
+├─ Trial Expiry:       EXPIRED ❌
+├─ Joined:             2024-01-15
+└─ Actions:            Can extend membership
+
+
+USER 2: Priya Sharma ⭐
+├─ ID:                 user_2
+├─ Email:              priya.sharma@email.com
+├─ Sport:              Badminton
+├─ Status:             TRIAL ⏱️
+├─ Membership Expiry:  +60 days
+├─ Trial Expiry:       +5 days
+├─ Joined:             2024-06-20
+└─ Actions:            Can extend trial (PENDING APPROVAL)
+
+
+USER 3: Rahul Nair
+├─ ID:                 user_3
+├─ Email:              rahul.nair@email.com
+├─ Sport:              Badminton
+├─ Status:             ACTIVE ✅
+├─ Membership Expiry:  +15 days
+├─ Trial Expiry:       EXPIRED ❌
+├─ Joined:             2024-02-10
+└─ Actions:            Can extend membership
+
+
+USER 4: Kavya Reddy ⭐
+├─ ID:                 user_4
+├─ Email:              kavya.reddy@email.com
+├─ Sport:              Badminton
+├─ Status:             TRIAL ⏱️
+├─ Membership Expiry:  +30 days
+├─ Trial Expiry:       +2 days
+├─ Joined:             2024-07-01
+└─ Actions:            Can extend trial (PENDING APPROVAL)
+
+
+USER 5: Siddharth Joshi
+├─ ID:                 user_5
+├─ Email:              siddharth.j@email.com
+├─ Sport:              Badminton
+├─ Status:             INACTIVE ❌
+├─ Membership Expiry:  EXPIRED ❌
+├─ Trial Expiry:       EXPIRED ❌
+├─ Joined:             2023-12-01
+└─ Actions:            Can reactivate
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                          BOOKINGS (5 Today)
+═══════════════════════════════════════════════════════════════════════════════
+
+BOOKING 1
+├─ ID:         booking_1
+├─ User:       Arjun Mehta
+├─ Court:      Court A
+├─ Time:       Today, 6:00 PM - 7:00 PM
+├─ Amount:     ₹500
+└─ Status:     ✅ CONFIRMED
+
+
+BOOKING 2
+├─ ID:         booking_2
+├─ User:       Priya Sharma
+├─ Court:      Court B
+├─ Time:       Today, 7:30 PM - 8:30 PM
+├─ Amount:     ₹500
+└─ Status:     ✅ CONFIRMED
+
+
+BOOKING 3
+├─ ID:         booking_3
+├─ User:       Rahul Nair
+├─ Court:      Court C
+├─ Time:       Today, 4:00 PM - 5:00 PM
+├─ Amount:     ₹500
+└─ Status:     ✅ COMPLETED
+
+
+BOOKING 4
+├─ ID:         booking_4
+├─ User:       Kavya Reddy
+├─ Court:      Court A
+├─ Time:       Today, 2:00 PM - 3:00 PM
+├─ Amount:     ₹500
+└─ Status:     ✅ COMPLETED
+
+
+BOOKING 5
+├─ ID:         booking_5
+├─ User:       Arjun Mehta
+├─ Court:      Court B
+├─ Time:       Yesterday, 5:00 PM - 6:00 PM
+├─ Amount:     ₹500
+└─ Status:     ✅ COMPLETED
+
+
+REVENUE SUMMARY
+├─ Total Today:        ₹2,500 (5 bookings)
+├─ Confirmed:          ₹1,000 (2 bookings)
+├─ Completed:          ₹1,500 (3 bookings)
+└─ Average per Booking: ₹500
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                       APPROVAL REQUESTS (Dynamic)
+═══════════════════════════════════════════════════════════════════════════════
+
+APPROVAL 1 (PENDING)
+├─ ID:           approval_1
+├─ Action:       EXTEND MEMBERSHIP
+├─ Target User:  Arjun Mehta
+├─ Change:       Extend membership by 30 days
+├─ Status:       ⏳ PENDING
+├─ Created:      2024-07-08 10:30 AM
+└─ Next State:   +30 days from current expiry
+
+
+APPROVAL 2 (PENDING)
+├─ ID:           approval_2
+├─ Action:       EXTEND TRIAL
+├─ Target User:  Priya Sharma
+├─ Change:       Extend trial by 7 days
+├─ Status:       ⏳ PENDING
+├─ Created:      2024-07-08 11:15 AM
+└─ Next State:   +7 days from current trial expiry
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        AUDIT LOGS (All Operations)
+═══════════════════════════════════════════════════════════════════════════════
+
+Fields Tracked:
+├─ ID:         Unique log entry identifier
+├─ VendorID:   Which vendor performed the action
+├─ Action:     What was done (query, approval, etc.)
+├─ Query:      The actual query/request text
+├─ Result:     What happened/was returned
+├─ Status:     SUCCESS or FAILED
+├─ Timestamp:  When it occurred
+└─ Metadata:   Additional context
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        COPILOT USAGE EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+READ QUERIES (Instant results + Groq AI)
+─────────────────────────────────────────────
+
+Query: "What is my revenue today?"
+Data Used: bookings table
+Filter: vendorId = vendor_1, date = today
+Result: ₹2,500 from 5 bookings
+AI Analysis: "Your revenue today is ₹2,500..."
+
+Query: "List trial users of badminton"
+Data Used: users table
+Filter: vendorId = vendor_1, status = 'trial', sport = 'Badminton'
+Result: Priya Sharma, Kavya Reddy
+AI Analysis: "You have 2 trial users in Badminton..."
+
+Query: "How many active members do I have?"
+Data Used: users table
+Filter: vendorId = vendor_1, status = 'active'
+Result: 2 active members (Arjun, Rahul)
+AI Analysis: "You currently have 2 active members..."
+
+Query: "List all my users"
+Data Used: users table
+Filter: vendorId = vendor_1
+Result: All 5 users with breakdown
+AI Analysis: "Your membership breakdown..."
+
+
+WRITE QUERIES (Approval required)
+─────────────────────────────────
+
+Query: "Extend Arjun's membership by 30 days"
+Action: Creates approval_1
+Status: Pending vendor approval
+Table: approval_requests
+Change: membershipExpiry += 30 days
+Log: audit_logs records the action
+
+Query: "Extend Priya's trial by 7 days"
+Action: Creates approval_2
+Status: Pending vendor approval
+Table: approval_requests
+Change: trialExpiresAt += 7 days
+Log: audit_logs records the action
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           DATA RELATIONSHIPS
+═══════════════════════════════════════════════════════════════════════════════
+
+VENDOR (1) ──→ MANY (5) USERS
+         ├──→ MANY (5+) BOOKINGS per user
+         ├──→ APPROVAL REQUESTS (user modifications)
+         └──→ AUDIT LOGS (all vendor operations)
+
+vendor_1
+├─ users: [user_1, user_2, user_3, user_4, user_5]
+├─ bookings: [booking_1, booking_2, booking_3, booking_4, booking_5]
+├─ approvals: [approval_1, approval_2]
+└─ logs: [all operations from vendor_1]
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           QUICK STATISTICS
+═══════════════════════════════════════════════════════════════════════════════
+
+VENDOR_1 (Smash Arena)
+├─ Total Users: 5
+│  ├─ Active: 2
+│  ├─ Trial: 2
+│  └─ Inactive: 1
+├─ Today's Bookings: 5
+├─ Today's Revenue: ₹2,500
+├─ Confirmed Bookings: 2
+├─ Completed Bookings: 3
+├─ Pending Approvals: 2
+└─ Member Expiry Soon: 3 (within 30 days)
+
+ALL VENDORS COMBINED
+├─ Total Vendors: 3
+├─ Total Users: ~50 (estimated per vendor)
+├─ Combined Revenue: ₹310,500/month
+├─ Trial Users: 82 total
+└─ Active Members: ~150+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                             KEY STATISTICS
+═══════════════════════════════════════════════════════════════════════════════
+
+MEMBERSHIP BREAKDOWN
+├─ Active Users: 2 out of 5 (40%)
+├─ Trial Users: 2 out of 5 (40%)
+└─ Inactive Users: 1 out of 5 (20%)
+
+TRIAL STATUS
+├─ Expiring Soon (<5 days): 1 (Kavya - 2 days)
+├─ Medium Term (5-10 days): 1 (Priya - 5 days)
+└─ Expired: 2 (Arjun, Rahul)
+
+BOOKING PATTERNS
+├─ Peak Time: 6-8 PM
+├─ Courts Used: A, B, C (all active)
+├─ Average Duration: 1 hour
+├─ Standard Rate: ₹500 per slot
+└─ Utilization: 5/5 courts today
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        HOW TO TEST THE COPILOT
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 1: Visit http://localhost:3000/demo
+
+STEP 2: View Mock Data (optional)
+        • Click "View Mock Data" button to see all data
+        • Review vendor, user, and booking information
+
+STEP 3: Try Read Queries
+        • "What is my revenue today?"
+        • "List trial users of badminton"
+        • "How many active members?"
+        • "Show all my users"
+
+STEP 4: Try Write Queries
+        • "Extend Priya's trial by 7 days"
+        • "Extend Arjun's membership by 30 days"
+        → See approval modals appear
+
+STEP 5: View Audit Trail
+        • Click "Show Audit Log" to see all operations logged
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                              SUMMARY
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ 3 Vendors with different sports and metrics
+✓ 5 Users in various membership states
+✓ 5 Bookings generating ₹2,500 revenue today
+✓ 2 Pending approval requests
+✓ Complete audit trail for all operations
+✓ All data visible on /mock-data page
+✓ Interactive tables and color-coded status
+✓ Ready for copilot queries and testing
+
+Mock data is comprehensive, realistic, and fully integrated with the Copilot!
+
