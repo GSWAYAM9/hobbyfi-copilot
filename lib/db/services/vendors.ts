@@ -1,5 +1,3 @@
-'use server'
-
 import { db } from '@/lib/db'
 import { vendors } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'

@@ -1,5 +1,3 @@
-'use server'
-
 import { generateAIResponse, analyzeWithAI } from './ai-client'
 import { v4 as uuidv4 } from 'uuid'
 import { ApprovalRequest, QueryResult } from './types'
@@ -48,11 +46,11 @@ export const guardrails = {
 
 // ============ INTENT ROUTER ============
 
-export function routeIntent(query: string): {
+export async function routeIntent(query: string): Promise<{
   intent: 'read' | 'write'
   action?: string
   entities?: Record<string, any>
-} {
+}> {
   const lowerQuery = query.toLowerCase()
 
   // Write operations
@@ -197,7 +195,7 @@ export async function processQuery(vendorId: string, userQuery: string): Promise
   }
 
   // 3. Route intent
-  const routing = routeIntent(userQuery)
+  const routing = await routeIntent(userQuery)
 
   // 4. Execute tools based on intent
   let result: any
