@@ -84,6 +84,13 @@ export default function DemoPage() {
               ))}
             </select>
 
+            <Link
+              href="/mock-data"
+              className="px-4 py-2 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-lg transition-colors font-medium text-sm"
+            >
+              View Mock Data
+            </Link>
+
             <button
               onClick={() => setShowAudit(!showAudit)}
               className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors"
