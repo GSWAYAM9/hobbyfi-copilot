@@ -1,4 +1,4 @@
-import { processQuery } from '@/lib/copilot-engine'
+import { processQuery } from '@/lib/copilot-engine-db'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
@@ -13,21 +13,24 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Process query with AI analysis powered by Groq via Vercel AI Gateway
+    // Process query with Neon database + AI analysis powered by Groq
     const result = await processQuery(vendorId, query)
 
-    // Add AI configuration status to response
-    const aiConfigured = !!process.env.AI_GATEWAY_API_KEY
+    // Add database and AI configuration status to response
+    const aiConfigured = !!process.env.GROQ_API_KEY
+    const dbConfigured = !!process.env.DATABASE_URL
     const aiModel = aiConfigured
       ? 'groq/llama-3.1-8b-instant'
-      : 'mock (demo mode - add AI_GATEWAY_API_KEY for real Groq AI)'
+      : 'mock (demo mode - add GROQ_API_KEY for real Groq AI)'
 
     return NextResponse.json({
       ...result,
       _metadata: {
+        database: 'Neon PostgreSQL',
+        dbConfigured,
         aiModel,
         aiConfigured,
-        aiProvider: 'Vercel AI Gateway (Groq)',
+        aiProvider: 'Groq via Vercel AI SDK',
         timestamp: new Date().toISOString(),
       },
     })
@@ -37,8 +40,10 @@ export async function POST(request: NextRequest) {
       {
         error: 'Failed to process query',
         _metadata: {
-          aiConfigured: !!process.env.AI_GATEWAY_API_KEY,
-          aiProvider: 'Vercel AI Gateway (Groq)',
+          database: 'Neon PostgreSQL',
+          dbConfigured: !!process.env.DATABASE_URL,
+          aiConfigured: !!process.env.GROQ_API_KEY,
+          aiProvider: 'Groq via Vercel AI SDK',
         },
       },
       { status: 500 }
