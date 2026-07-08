@@ -1,11 +1,20 @@
 import { generateText } from 'ai'
+import { groq } from '@ai-sdk/groq'
 
-// Use Vercel AI Gateway with Groq as the provider
-// Models available: groq/llama-3.1-8b-instant, groq/mixtral-8x7b-32768, etc.
-const MODEL = 'groq/llama-3.1-8b-instant'
+// Use Groq directly for real AI responses
+// Model: llama-3.1-8b-instant - ultra-fast, cost-effective
+const MODEL = 'llama-3.1-8b-instant'
 
-// For demo purposes, we'll use mock responses if API key is not configured
-const USE_MOCK_RESPONSES = !process.env.AI_GATEWAY_API_KEY
+// Check if Groq API key is configured
+const GROQ_API_KEY = process.env.GROQ_API_KEY
+const USE_REAL_AI = !!GROQ_API_KEY
+const USE_MOCK_RESPONSES = !GROQ_API_KEY
+
+if (USE_REAL_AI) {
+  console.log('[Copilot] ✅ Real Groq AI enabled with API key')
+} else {
+  console.log('[Copilot] ℹ️ Demo mode - no GROQ_API_KEY configured')
+}
 
 interface AITextGenerationOptions {
   prompt: string
@@ -15,7 +24,7 @@ interface AITextGenerationOptions {
 }
 
 /**
- * Generate text using Groq via Vercel AI Gateway
+ * Generate text using Groq's llama-3.1-8b-instant model
  * Falls back to mock responses if API key not configured
  */
 export async function generateAIResponse(
@@ -25,23 +34,28 @@ export async function generateAIResponse(
 
   // Mock mode for demo without API key
   if (USE_MOCK_RESPONSES) {
-    console.log('[Copilot] Using mock responses (no AI_GATEWAY_API_KEY configured)')
+    console.log('[Copilot] Using mock responses (GROQ_API_KEY not configured)')
     return generateMockResponse(prompt)
   }
 
   try {
+    console.log('[Copilot] Calling Groq API...')
     const result = await generateText({
-      model: 'groq/llama-3.1-8b-instant',
+      model: groq(MODEL, {
+        apiKey: GROQ_API_KEY,
+      }),
       prompt,
       system,
       temperature,
       maxTokens,
     })
 
+    console.log('[Copilot] ✅ Groq response received')
     return result.text
   } catch (error) {
-    console.error('[Copilot] AI generation failed:', error)
+    console.error('[Copilot] Groq API call failed:', error)
     // Fallback to mock response on error
+    console.log('[Copilot] Falling back to mock response')
     return generateMockResponse(prompt)
   }
 }
