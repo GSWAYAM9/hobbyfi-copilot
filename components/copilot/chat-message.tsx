@@ -60,6 +60,15 @@ export default function ChatMessage({ message, showApproval }: ChatMessageProps)
           </div>
         )}
 
+        {message.metadata?.aiModel && !isUser && (
+          <div className="mt-2 pt-2 border-t border-gray-300/50 flex items-center gap-2">
+            <span className="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-1 rounded">
+              {message.metadata.aiConfigured ? '🤖 Groq AI' : '🔄 Demo Mode'}
+            </span>
+            <span className="text-xs text-gray-500">{message.metadata.aiModel}</span>
+          </div>
+        )}
+
         <div className="text-xs opacity-70 mt-2">
           {message.timestamp.toLocaleTimeString()}
         </div>

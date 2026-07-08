@@ -59,7 +59,7 @@ export default function ChatInterface() {
         }),
       })
 
-      const result: QueryResult = await response.json()
+      const result: QueryResult & { _metadata?: any } = await response.json()
 
       // Add AI response
       let assistantContent = ''
@@ -71,18 +71,32 @@ export default function ChatInterface() {
         assistantContent = `Write operation pending approval: ${result.result?.message}\n\nApproval ID: ${result.approvalRequestId}`
         setSelectedApproval(result.approvalRequestId!)
       } else if (result.result) {
+        // Format read results with AI insights
+        let formattedResult = ''
+
+        // Include AI insights from Groq if available
+        if (result.result.aiInsights) {
+          formattedResult = `**AI Analysis (Powered by Groq):**\n${result.result.aiInsights}\n\n---\n\n**Raw Data:**\n`
+        }
+
         // Format read results
         if (typeof result.result === 'object') {
-          assistantContent = Object.entries(result.result)
+          const dataLines = Object.entries(result.result)
+            .filter(([key]) => key !== 'aiInsights') // Exclude aiInsights from data section
             .map(([key, value]) => {
               if (Array.isArray(value)) {
                 return `${key}:\n${value.map((v) => `  • ${JSON.stringify(v)}`).join('\n')}`
               }
+              if (typeof value === 'object' && value !== null) {
+                return `${key}:\n${JSON.stringify(value, null, 2)}`
+              }
               return `${key}: ${value}`
             })
             .join('\n')
+
+          assistantContent = formattedResult + dataLines
         } else {
-          assistantContent = String(result.result)
+          assistantContent = formattedResult + String(result.result)
         }
       }
 
@@ -95,6 +109,8 @@ export default function ChatInterface() {
           intent: result.intent,
           approvalId: result.approvalRequestId,
           sql: result.sql,
+          aiModel: result._metadata?.aiModel,
+          aiConfigured: result._metadata?.aiConfigured,
         },
       }
 

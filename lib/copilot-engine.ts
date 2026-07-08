@@ -1,4 +1,5 @@
 import { mockUsers, mockBookings, mockVendors, addApprovalRequest, addAuditLog } from './mock-data'
+import { generateAIResponse, analyzeWithAI } from './ai-client'
 import { v4 as uuidv4 } from 'uuid'
 import { ApprovalRequest, QueryResult, User } from './types'
 
@@ -227,10 +228,29 @@ export async function processQuery(
 
   // 4. Execute tools based on intent
   let result: any
+  let aiAnalysis: string | undefined
 
   if (routing.intent === 'read') {
     // Execute SQL Query
-    result = tools.sqlQuery(vendorId, userQuery)
+    const toolResult = tools.sqlQuery(vendorId, userQuery)
+
+    // Get AI-powered analysis using Groq
+    try {
+      const vendor = mockVendors.find((v) => v.id === vendorId)
+      const aiResponse = await analyzeWithAI(userQuery, {
+        ...toolResult,
+        vendorName: vendor?.name,
+        period: 'today',
+      })
+      aiAnalysis = aiResponse.analysis
+    } catch (error) {
+      console.error('[Copilot] AI analysis failed, using raw results:', error)
+    }
+
+    result = {
+      ...toolResult,
+      aiInsights: aiAnalysis,
+    }
   } else if (routing.intent === 'write') {
     // Generate approval request
     const approvalId = uuidv4()
