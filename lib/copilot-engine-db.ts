@@ -9,7 +9,7 @@ import { createApprovalRequest, listPendingApprovals, approveRequest } from './d
 
 // ============ GUARDRAILS ============
 
-export const guardrails = {
+const guardrails = {
   detectInjection(query: string): boolean {
     const suspiciousPatterns = [
       /(\bDROP\b|\bDELETE\b|\bTRUNCATE\b|\bINSERT\b.*INTO\b|\bUPDATE\b|\bALTER\b)/i,
@@ -73,7 +73,7 @@ export async function routeIntent(query: string): Promise<{
 
 // ============ TOOLS ============
 
-export const tools = {
+const tools = {
   async queryVendorData(vendorId: string, query: string) {
     const lowerQuery = query.toLowerCase()
 
